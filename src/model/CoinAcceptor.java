@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 public class CoinAcceptor implements PaymentReceiver {
