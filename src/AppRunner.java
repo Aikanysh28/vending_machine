@@ -45,7 +45,7 @@ public class AppRunner {
 
     public static int choosePaymentMethod() {
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        int choice = -1;
         while (true) {
             System.out.println("Выберите тип оплаты:");
             System.out.println("1 - монетами,  2 - картой");
@@ -89,7 +89,8 @@ public class AppRunner {
         showActions(products);
         System.out.println(" i - Сменить способ оплаты");
         print(" h - Выйти");
-        String action = fromConsole().substring(0, 1);
+        String action = fromConsole().substring(0, 1).toLowerCase();
+
         if ("a".equalsIgnoreCase(action)) {
             paymentReceiver.deposit();
             return;
@@ -100,6 +101,10 @@ public class AppRunner {
         }
         if ("h".equalsIgnoreCase(action)) {
             isExit = true;
+            return;
+        }
+        if ("i".equalsIgnoreCase(action)) {
+            changePaymentMethod();
             return;
         }
         try {
@@ -115,6 +120,15 @@ public class AppRunner {
             print("Ошибка ввода.");
         }
 
+    }
+    private void changePaymentMethod() {
+        int method = choosePaymentMethod();
+        if (method == 1) {
+            this.paymentReceiver = new CoinAcceptor();
+        } else {
+            this.paymentReceiver = new CardAcceptor();
+        }
+        print("Способ оплаты успешно изменен!");
     }
 
     private void changePaymentMethod() {
