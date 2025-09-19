@@ -9,7 +9,7 @@ public class AppRunner {
 
     private final UniversalArray<Product> products = new UniversalArrayImpl<>();
 
-    private final PaymentReceiver paymentReceiver;
+    private PaymentReceiver paymentReceiver;
 
     private static boolean isExit = false;
 
@@ -87,10 +87,15 @@ public class AppRunner {
     private void chooseAction(UniversalArray<Product> products) {
         System.out.println(" a - Пополнить баланс");
         showActions(products);
+        System.out.println(" i - Сменить способ оплаты");
         print(" h - Выйти");
         String action = fromConsole().substring(0, 1);
         if ("a".equalsIgnoreCase(action)) {
             paymentReceiver.deposit();
+            return;
+        }
+        if ("i".equalsIgnoreCase(action)) {
+            changePaymentMethod();
             return;
         }
         if ("h".equalsIgnoreCase(action)) {
@@ -110,6 +115,16 @@ public class AppRunner {
             print("Ошибка ввода.");
         }
 
+    }
+
+    private void changePaymentMethod() {
+        int method = choosePaymentMethod();
+        if (method == 1) {
+            this.paymentReceiver = new CoinAcceptor();
+        } else {
+            this.paymentReceiver = new CardAcceptor();
+        }
+        print("Способ оплаты успешно изменен!");
     }
 
     private void showActions(UniversalArray<Product> products) {
