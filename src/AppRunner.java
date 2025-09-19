@@ -131,15 +131,6 @@ public class AppRunner {
         print("Способ оплаты успешно изменен!");
     }
 
-    private void changePaymentMethod() {
-        int method = choosePaymentMethod();
-        if (method == 1) {
-            this.paymentReceiver = new CoinAcceptor();
-        } else {
-            this.paymentReceiver = new CardAcceptor();
-        }
-        print("Способ оплаты успешно изменен!");
-    }
 
     private void showActions(UniversalArray<Product> products) {
         for (int i = 0; i < products.size(); i++) {
