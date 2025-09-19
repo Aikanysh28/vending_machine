@@ -1,0 +1,18 @@
+git remote -v (Проверка удалённого репозитория)
+cd vending_machine
+cd src\model (переход к местоположению)
+git add CoinAcceptor.java
+git add src\AppRunner.java (Добавление файлов в staging)
+git status (проверка статуса)
+git commit -m "implemented functions (deposit, getBalance, deduct) for the coin acceptor"
+git commit -m "implemented functions (deposit, getBalance, deduct) for the card acceptor"
+git commit -m "improved function deposit"
+git commit -m "Added new function to choose Payment Method. Have corrected the exit from the program and topped up my balance."
+git commit -m "Added letter \"i\" to change payment method"
+git commit -m "improved AppRunner" (Создание и отправка коммитов на локальной ветке home_work_25)
+git push -u origin --all (Отправка всех веток на удалённый репозиторий)
+git checkout master (Переключение на ветку master)
+git pull origin master
+git merge home_work_25(слияние веток)
+git commit -m "resolved conflicts" (закоммитили решение конфликтов)
+git log --oneline (просмотр истории коммитов)
