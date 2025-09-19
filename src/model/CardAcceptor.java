@@ -15,6 +15,22 @@ public class CardAcceptor implements PaymentReceiver {
 
         if (!card.isEmpty() && !pin.isBlank()) {
             System.out.println("Пароль верный! Доступный баланс на карте: " + balance);
+
+            int amount = 0;
+            while (true) {
+                System.out.print("Введите сумму для пополнения: ");
+                String input = sc.nextLine();
+                try {
+                    amount = Integer.parseInt(input);
+                    if (amount > 0) break;
+                    else System.out.println("Сумма должна быть больше 0.");
+                } catch (NumberFormatException e) {
+                    System.out.println("Введите корректное число.");
+                }
+            }
+
+            balance += amount;
+            System.out.println("Баланс успешно пополнен. Текущий баланс: " + balance);
         } else {
             System.out.println("Неверный номер карты или пароль!");
         }
